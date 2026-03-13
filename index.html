@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>¿Quieres ser mi novia?</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Segoe UI', cursive;
+    background: linear-gradient(135deg,#ff6b81,#ff3f6c,#ff1e56);
+    color:white;
+}
+
+/* contenedor */
+.container{
+    text-align:center;
+}
+
+/* titulo */
+h1{
+    font-size:3rem;
+    margin-bottom:40px;
+}
+
+/* botones */
+button{
+    padding:15px 35px;
+    font-size:1.2rem;
+    border:none;
+    border-radius:30px;
+    margin:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.si{
+    background:#ff1744;
+    color:white;
+}
+
+.no{
+    background:white;
+    color:#ff1744;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+/* mensaje error */
+#error{
+    margin-top:20px;
+    font-size:1.2rem;
+}
+
+/* pantalla final */
+.final{
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background:white;
+    justify-content:center;
+    align-items:center;
+}
+
+/* corazón */
+.heart{
+    position:relative;
+    width:300px;
+    height:270px;
+    background:red;
+    transform:rotate(-45deg);
+}
+
+.heart:before,
+.heart:after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:270px;
+    background:red;
+    border-radius:50%;
+    z-index:1;
+}
+
+.heart:before{
+    top:-150px;
+    left:0;
+}
+
+.heart:after{
+    left:150px;
+    top:0;
+}
+
+.heart-text{
+    position:absolute;
+    transform:rotate(45deg);
+    color:white;
+    font-size:24px;
+    width:300px;
+    text-align:center;
+    top:70px;
+    left:0;
+    z-index:2;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="pregunta">
+
+<h1>¿Quieres ser mi novia?</h1>
+
+<button class="si" onclick="aceptar()">Sí 💖</button>
+<button class="no" onclick="rechazar()">No</button>
+
+<div id="error"></div>
+
+</div>
+
+<div class="final" id="final">
+
+<div class="heart">
+<div class="heart-text">
+    De: Alex <br>
+Ahora eres mi novia ❤️  
+y eres mía para siempre <br>
+My Vicky
+</div>
+</div>
+
+</div>
+
+<script>
+
+function rechazar(){
+document.getElementById("error").innerText=
+"esa no es la respuesta correcta vuelva a intentarlo";
+}
+
+function aceptar(){
+document.getElementById("pregunta").style.display="none";
+document.getElementById("final").style.display="flex";
+}
+
+</script>
+
+</body>
+</html>
