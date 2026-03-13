@@ -2,118 +2,256 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>¿Quieres ser mi novia?</title>
 
 <style>
 
 body{
     margin:0;
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     font-family:'Segoe UI', cursive;
     background: linear-gradient(135deg,#ff6b81,#ff3f6c,#ff1e56);
     color:white;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 /* contenedor */
 .container{
     text-align:center;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
 }
 
 /* titulo */
 h1{
-    font-size:5rem;
-    margin-bottom:40px;
+    font-size: clamp(2.2rem, 10vw, 4rem);
+    margin-bottom: 25px;
+    word-break: break-word;
+}
+
+/* contenedor de botones */
+.botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
 }
 
 /* botones */
 button{
-    padding:15px 35px;
-    font-size:1.2rem;
-    border:none;
-    border-radius:30px;
-    margin:10px;
-    cursor:pointer;
-    transition:0.3s;
+    padding: 12px 30px;
+    font-size: clamp(1.5rem, 7vw, 3rem);
+    border: none;
+    border-radius: 50px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    max-width: 280px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: bold;
 }
 
 .si{
     background:#ff1744;
     color:white;
-    font-size: 4rem;
 }
 
 .no{
     background:white;
     color:#ff1744;
-    font-size: 4rem;
 }
 
 button:hover{
-    transform:scale(1.1);
+    transform:scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 /* mensaje error */
 #error{
-    margin-top:20px;
-    font-size:1.2rem;
+    margin-top: 20px;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    padding: 12px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
 /* pantalla final */
 .final{
-    display:none;
-    position:absolute;
-    top:0;
-    left:0;
-    height:100%;
-    width:100%;
-    background:white;
-    justify-content:center;
-    align-items:center;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+/* contenedor del corazón - TAMAÑO REDUCIDO */
+.heart-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.heart-container {
+    position: relative;
+    width: min(220px, 65vw);
+    height: min(200px, 59vw);
+    margin: 0 auto;
 }
 
 /* corazón */
 .heart{
-    position:relative;
-    width:300px;
-    height:270px;
-    background:red;
-    transform:rotate(-45deg);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #ff1744;
+    transform: rotate(-45deg);
+    animation: latido 1.5s ease-in-out infinite;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes latido {
+    0% { transform: rotate(-45deg) scale(1); }
+    25% { transform: rotate(-45deg) scale(1.08); }
+    35% { transform: rotate(-45deg) scale(1); }
+    45% { transform: rotate(-45deg) scale(1.04); }
+    55% { transform: rotate(-45deg) scale(1); }
+    100% { transform: rotate(-45deg) scale(1); }
 }
 
 .heart:before,
 .heart:after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:270px;
-    background:red;
-    border-radius:50%;
-    z-index:1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ff1744;
+    border-radius: 50%;
+    z-index: 1;
 }
 
 .heart:before{
-    top:-150px;
-    left:0;
+    top: -50%;
+    left: 0;
 }
 
 .heart:after{
-    left:150px;
-    top:0;
+    left: 50%;
+    top: 0;
 }
 
+/* TEXTO CENTRADO PERFECTAMENTE */
 .heart-text{
-    position:absolute;
-    transform:rotate(45deg);
-    color:white;
-    font-size: 2rem;;
-    width:300px;
-    text-align:center;
-    top:0px;
-    left:0;
-    z-index:2;
+    position: absolute;
+    transform: rotate(45deg) translate(-50%, -50%);
+    color: white;
+    font-size: clamp(0.9rem, 4.8vw, 1.3rem);
+    width: 90%;
+    text-align: center;
+    top: 65%;
+    left: 20%;
+    z-index: 2;
+    padding: 5px;
+    box-sizing: border-box;
+    line-height: 1.5;
+    word-break: break-word;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* ajustes para pantallas muy pequeñas */
+@media (max-width: 380px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    button {
+        font-size: 1.3rem;
+        padding: 10px 20px;
+        max-width: 220px;
+    }
+    
+    .heart-container {
+        width: 180px;
+        height: 160px;
+    }
+    
+    .heart-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* para pantallas más grandes */
+@media (min-width: 600px) {
+    .heart-container {
+        width: 260px;
+        height: 235px;
+    }
+    
+    .heart-text {
+        font-size: 1.2rem;
+    }
+}
+
+/* orientación horizontal en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .botones {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    button {
+        max-width: 150px;
+        font-size: 1.2rem;
+        padding: 8px 15px;
+    }
+    
+    .heart-container {
+        width: 150px;
+        height: 135px;
+    }
+    
+    .heart-text {
+        font-size: 0.8rem;
+    }
 }
 
 </style>
@@ -125,37 +263,72 @@ button:hover{
 
 <h1>¿Quieres ser mi novia?</h1>
 
-<button class="si" onclick="aceptar()">Sí 💖</button>
-<button class="no" onclick="rechazar()">No</button>
+<div class="botones">
+    <button class="si" onclick="aceptar()">Sí 💖</button>
+    <button class="no" onclick="rechazar()">No</button>
+</div>
 
 <div id="error"></div>
 
 </div>
 
 <div class="final" id="final">
-
+<div class="heart-wrapper">
+<div class="heart-container">
 <div class="heart">
 <div class="heart-text">
-    De: Alex <br>
-Ahora eres mi novia ❤️  
-y eres mía para siempre <br>
-My Vicky
+    De: Alex ❤️<br>
+    Ahora eres mi novia<br>
+    y eres mía para siempre<br>
+    My Vicky
 </div>
 </div>
-
+</div>
+</div>
 </div>
 
 <script>
 
 function rechazar(){
-document.getElementById("error").innerText=
-"esa no es la respuesta correcta vuelva a intentarlo";
+    const errorDiv = document.getElementById("error");
+    errorDiv.innerText = "❌ Esa no es la respuesta correcta ❌ Vuelve a intentarlo";
+    
+    // animación para el botón no
+    const noBtn = document.querySelector('.no');
+    noBtn.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        noBtn.style.transform = 'scale(1)';
+    }, 200);
+    
+    // animación de shake para el error
+    errorDiv.style.animation = 'shake 0.3s ease-in-out';
+    setTimeout(() => {
+        errorDiv.style.animation = '';
+    }, 300);
 }
 
 function aceptar(){
-document.getElementById("pregunta").style.display="none";
-document.getElementById("final").style.display="flex";
+    document.getElementById("pregunta").style.display="none";
+    document.getElementById("final").style.display="flex";
 }
+
+// prevenir zoom accidental en doble tap
+document.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+// animación shake para el error
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+`;
+document.head.appendChild(style);
 
 </script>
 
